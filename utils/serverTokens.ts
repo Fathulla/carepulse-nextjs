@@ -8,3 +8,5 @@ export const serverTokens = {
   nextPublicBucketId: "66af9c960024f239d0dd",
   nextPublicEndpoint: "https://cloud.appwrite.io/v1"
 }
+
+export const nextPublicAdminPasskey = "111111"
