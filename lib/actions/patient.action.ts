@@ -1,4 +1,4 @@
-"use server"
+"use server";
 
 import { ID, Query } from "node-appwrite";
 import { databases, storage, users } from "../appwrite.config";
@@ -11,7 +11,7 @@ const {
   databaseId,
   patientCollectionId,
   nextPublicEndpoint,
-  projectId
+  projectId,
 } = serverTokens;
 
 export const createUser = async (user: CreateUserParams) => {
@@ -77,6 +77,20 @@ export const registerPatient = async ({
 
     return parseStringify(newPatient);
   } catch (error) {
+    console.log(error);
+  }
+};
+
+export const getPatient = async (userId: string) => {
+  try {
+    const patients = await databases.listDocuments(
+      databaseId,
+      patientCollectionId,
+      [Query.equal("userId", userId)]
+    );
+
+    return parseStringify(patients.documents[0]);
+  } catch (error) { 
     console.log(error);
   }
 };
