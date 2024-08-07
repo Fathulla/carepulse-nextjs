@@ -9,7 +9,7 @@ import SubmitButton from "../SubmitButton";
 import { useState } from "react";
 import { PatientFormValidation } from "@/lib/validation";
 import { useRouter } from "next/navigation";
-import { createUser, registerPatient } from "@/lib/actions/patient.action";
+import { registerPatient } from "@/lib/actions/patient.action";
 import { FormFieldType } from "./PatientForm";
 import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import {
@@ -46,6 +46,7 @@ const RegisterForm = ({ user }: { user: User }) => {
       values.identificationDocument &&
       values.identificationDocument.length > 0
     ) {
+
       const blobFile = new Blob([values.identificationDocument[0]], {
         type: values.identificationDocument[0].type,
       });
@@ -71,6 +72,7 @@ const RegisterForm = ({ user }: { user: User }) => {
       console.log(error);
     }
   }
+
   return (
     <Form {...form}>
       <form
@@ -181,7 +183,7 @@ const RegisterForm = ({ user }: { user: User }) => {
           <CustomFormField
             fieldType={FormFieldType.PHONE_INPUT}
             control={form.control}
-            name="EmergencyContactNumber"
+            name="emergencyContactNumber"
             label="Emergency Contact Number"
             placeholder="(555) 123-4567"
           />
@@ -289,7 +291,7 @@ const RegisterForm = ({ user }: { user: User }) => {
             </SelectItem>
           ))}
         </CustomFormField>
-
+        
         <CustomFormField
           fieldType={FormFieldType.INPUT}
           control={form.control}
